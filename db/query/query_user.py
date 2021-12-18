@@ -29,4 +29,6 @@ class QueryUser:
     DELETE_USER_BY_ID: str = """
     DELETE from users WHERE user_id = ?
     """
+
+
 query_user = QueryUser()
