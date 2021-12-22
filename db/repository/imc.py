@@ -1,10 +1,9 @@
 import sqlite3
 from sqlite3 import IntegrityError
-import pandas as pd
 
 from db.query.query_imc import query_imc
 from db.session import connect_to_db
-from regras_de_negocio.imc import calcular_imc
+from regras_de_negocio.imc import calcular_imc, get_estatisticas
 
 
 def get_imcs_from_user(user_id, data):
@@ -128,7 +127,7 @@ def delete_imc(user_id, data):
         conn.commit()
         message["status"] = "User deleted successfully"
     except:
-        message["status"] = "Cannot delete user"
+        message["status"] = "Cannot dereturn df.describe().to_dict()lete user"
     finally:
         conn.close()
 
@@ -138,7 +137,7 @@ def delete_imc(user_id, data):
 def estatisticas_imc(user_id):
     try:
         imcs = get_imcs_from_user_id(user_id)
-        df = pd.DataFrame(imcs)
-        return df.describe().to_dict()
+        estatisticas = get_estatisticas(imcs)
+        return estatisticas
     except Exception as e:
         return {"message": f"Error: {e}"}
