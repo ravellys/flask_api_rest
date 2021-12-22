@@ -21,7 +21,7 @@ def api_add_user():
     return jsonify(insert_user(user))
 
 
-@api_user.route('/api/v1/users/<user_id>', methods=['PATCH'])
+@api_user.route('/api/v1/users/<user_id>', methods=['PUT'])
 def api_update_user(user_id):
     user_update = request.get_json()
     return jsonify(update_user(user_update, user_id))
