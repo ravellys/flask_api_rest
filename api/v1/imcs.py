@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 
-from db.repository.imc import get_imcs_from_user, get_imc_by_id, insert_imc, update_imc, delete_imc
+from db.repository.imc import get_imcs_from_user, get_imc_by_id, insert_imc, update_imc, delete_imc, estatisticas_imc
 
 api_imc = Blueprint('api_imc', __name__)
 
@@ -35,3 +35,8 @@ def api_delete_imc():
     if not user_id or not data:
         return jsonify({'message': "Operação inválida! É necessário informar uma Data e um id de Usuário"})
     return jsonify(delete_imc(user_id, data))
+
+
+@api_imc.route('/api/v1/imcs/estatisticas/<user_id>', methods=['GET'])
+def api_estatisticas_imc(user_id):
+    return jsonify(estatisticas_imc(user_id))
