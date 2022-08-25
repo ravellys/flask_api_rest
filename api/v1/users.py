@@ -1,6 +1,7 @@
 from flask import jsonify, request, Blueprint
 
-from db.repository.user import get_users, get_user_by_id, insert_user, update_user, delete_user
+from db.repository.v1.user import get_users, get_user_by_id, update_user, delete_user, insert_user
+# from db.repository.v2.user import insert_user
 
 api_user = Blueprint('api_user', __name__)
 
@@ -30,3 +31,4 @@ def api_update_user(user_id):
 @api_user.route('/api/v1/users/<user_id>', methods=['DELETE'])
 def api_delete_user(user_id):
     return jsonify(delete_user(user_id))
+

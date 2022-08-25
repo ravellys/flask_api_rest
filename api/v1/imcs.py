@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 
-from db.repository.imc import get_imcs_from_user, get_imc_by_id, insert_imc, update_imc, delete_imc, estatisticas_imc
+from db.repository.v1.imc import get_imcs_from_user, insert_imc, update_imc, delete_imc, estatisticas_imc
 
 api_imc = Blueprint('api_imc', __name__)
 

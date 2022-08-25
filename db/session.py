@@ -1,5 +1,7 @@
 import sqlite3
 
+from sqlalchemy import create_engine
+
 from db.query.query_imc import query_imc
 from db.query.query_user import query_user
 
@@ -24,3 +26,8 @@ def create_db_table():
         print(">>> User table creation failed - Maybe table")
     finally:
         conn.close()
+
+
+# conectar com sqlite
+SQLALCHEMY_DATABASE_URL = "sqlite:///./app.db"
+engine = create_engine(SQLALCHEMY_DATABASE_URL, echo=True)
